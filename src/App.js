@@ -8,7 +8,7 @@ function calculateWinner(squares) {
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
-    [0, 3, 4],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
@@ -35,13 +35,18 @@ function App() {
       return
     }
     squares[i] = isX ? 'X' : 'O';
-    //console.log(isX + ': ' + squares[i] + ' - ' + i);
     setSquares(squares);
     setIsX(!isX);
   }
+
+  const winner = calculateWinner(squares);
+  let status;
   
+  status = winner ? `Winner: ${winner}`: `Next Player: ${isX ? 'X' : 'O'}`;
+
   return (
     <div className='App'>
+      <h1>Tic-Tac-Toe</h1>
       <div className='board-row'>
         <Square value={squares[0]} onClick = {() => squareClick(0)}/>
         <Square value={squares[1]} onClick = {() => squareClick(1)}/>
@@ -59,7 +64,8 @@ function App() {
         <Square value={squares[7]} onClick = {() => squareClick(7)}/>
         <Square value={squares[8]} onClick = {() => squareClick(8)}/>
       </div>
-
+      
+      <div className='status'>{status}</div>
     </div>
   );
 }
