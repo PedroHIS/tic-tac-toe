@@ -3,12 +3,39 @@ import './App.css';
 import React from 'react';
 import Square from "./components/Square.js";
 
+function calculateWinner(squares) {
+  const winningPatterns = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 4],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  for (const pattern of winningPatterns) {
+    const [first, second, third] = pattern;
+
+    if (squares[first] && squares[first] === squares[second] && squares[first] === squares[third]) {
+      return squares[first];
+    }
+  }
+
+  return null;
+}
+
 function App() {
-  const [squares, setSquares] = React.useState(Array(9).fill(null))
-  const [isX, setIsX] = React.useState(true)
+  const [squares, setSquares] = React.useState(Array(9).fill(null));
+  const [isX, setIsX] = React.useState(true);
   
   const squareClick = (i) => {
+    if ( calculateWinner(squares) || squares[i]){
+      return
+    }
     squares[i] = isX ? 'X' : 'O';
+    //console.log(isX + ': ' + squares[i] + ' - ' + i);
     setSquares(squares);
     setIsX(!isX);
   }
