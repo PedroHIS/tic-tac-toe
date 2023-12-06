@@ -1,8 +1,15 @@
+body{
+  background-color: #13293D;
+  color: #E8F1F2;
+}
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #E8F1F2;
+  width: 100%;
+  height: 80vh;;
 }
 
 .board-row{
@@ -12,11 +19,16 @@
 }
 .square{
   margin: 1px;
-  width: 70px;
-  height: 70px;
+  width: 4vw;
+  height: 8vh;
   font-size: 20px;
   border-radius: 2px;
   border-width: 0cm;
-  color: rgb(36, 18, 18);
-  background-color: rgb(222, 223, 222);
+  color: #E8F1F2;
+  background-color: #006494;
+}
+
+.status{
+  margin-top: 1vh;
+  font-size: 1.2em;
 }
