@@ -1,7 +1,11 @@
 //import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+
 import Square from "./components/Square.js";
+
+import IconX from "./icon-x.png";
+import IconO from "./icon-o.png";
 
 function calculateWinner(squares) {
   const winningPatterns = [
@@ -43,29 +47,54 @@ function App() {
   let status;
   
   status = winner ? `Winner: ${winner}`: `Next Player: ${isX ? 'X' : 'O'}`;
+  
+  const restartClick = () => {
+    setIsX(true);
+    setSquares(Array(9).fill(null));
+  }
 
   return (
     <div className='App'>
-      <h1>Tic-Tac-Toe</h1>
-      <div className='board-row'>
-        <Square value={squares[0]} onClick = {() => squareClick(0)}/>
-        <Square value={squares[1]} onClick = {() => squareClick(1)}/>
-        <Square value={squares[2]} onClick = {() => squareClick(2)}/>
-      </div>
+      <header>
+        <img src={IconX} />
+        <img src={IconO} />
+      </header>
       
-      <div className='board-row'>
-        <Square value={squares[3]} onClick = {() => squareClick(3)}/>
-        <Square value={squares[4]} onClick = {() => squareClick(4)}/>
-        <Square value={squares[5]} onClick = {() => squareClick(5)}/>
-      </div>
-      
-      <div className='board-row'>
-        <Square value={squares[6]} onClick = {() => squareClick(6)}/>
-        <Square value={squares[7]} onClick = {() => squareClick(7)}/>
-        <Square value={squares[8]} onClick = {() => squareClick(8)}/>
-      </div>
-      
-      <div className='status'>{status}</div>
+      <main>
+        
+        <div className='info-box'>
+          <h2>Tic Tac Toe</h2>
+          <p>
+            The very first traces of tic-tac-toe go back to Egypt, 
+            approximately 1300 BCE.
+          </p>
+          <button className='button-new-game' onClick={restartClick}>New Game</button>
+        </div>
+        
+        <div className='board'>
+          <div className='game-mode'>Two Players!</div>
+          <div className='board-row'>
+            <Square value={squares[0]} onClick = {() => squareClick(0)}/>
+            <Square value={squares[1]} onClick = {() => squareClick(1)}/>
+            <Square value={squares[2]} onClick = {() => squareClick(2)}/>
+          </div>
+          
+          <div className='board-row'>
+            <Square value={squares[3]} onClick = {() => squareClick(3)}/>
+            <Square value={squares[4]} onClick = {() => squareClick(4)}/>
+            <Square value={squares[5]} onClick = {() => squareClick(5)}/>
+          </div>
+          
+          <div className='board-row'>
+            <Square value={squares[6]} onClick = {() => squareClick(6)}/>
+            <Square value={squares[7]} onClick = {() => squareClick(7)}/>
+            <Square value={squares[8]} onClick = {() => squareClick(8)}/>
+          </div>
+
+          <div className='board-status'>{status}</div>
+        </div>
+      </main>
+
     </div>
   );
 }
